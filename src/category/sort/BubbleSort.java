@@ -1,6 +1,7 @@
 package category.sort;
 
-public class SelectionSort {
+public class BubbleSort {
+	
 	public static void main(String[] args) {
 		int[] array = new int[20];
 		
@@ -11,23 +12,24 @@ public class SelectionSort {
 			System.out.print(array[i]+" ");
 		}
 		System.out.println("");
-		selectionSort(array);
+		bubbleSort(array);
 		for(int i=0; i<array.length; i++) {
 			System.out.print(array[i]+" ");
 		}
 	}
 	
-	public static void selectionSort(int[] unsortedArray) {
+	public static void bubbleSort(int[] unsortedArray) {
 		int n = unsortedArray.length;
-		for(int i=n-1; i>=1; i--) {
-			int maxIndex = i;
-			for(int j=i-1; j>=0; j-- ) {
-				if(unsortedArray[j]>unsortedArray[maxIndex]) maxIndex = j; 
+		for(int i=n; i>0; i--) {
+			for(int j=0; j<i-1; j++) {
+				if(unsortedArray[j]>unsortedArray[j+1]) {
+					int temp = unsortedArray[j];
+					unsortedArray[j] = unsortedArray[j+1];
+					unsortedArray[j+1] = temp;
+				}
 			}
-			int temp = unsortedArray[i];
-			unsortedArray[i] = unsortedArray[maxIndex];
-			unsortedArray[maxIndex] = temp;			
 		}
+		
 	}
 
 }
