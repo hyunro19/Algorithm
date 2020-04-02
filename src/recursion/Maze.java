@@ -1,4 +1,4 @@
-package category.recursion;
+package recursion;
 
 public class Maze {
 	private static int N=8;
