@@ -29,7 +29,6 @@ public class HeapSort2 {
 	    for(int i=0; i< number; i++) {
 	        System.out.print(data[i]+ " ");
 	    }
-	    System.out.println();
 	    heap(data, number);
 	    
 	    for(int i = number-1; i>0; i--) {
