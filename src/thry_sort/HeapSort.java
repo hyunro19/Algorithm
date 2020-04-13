@@ -1,4 +1,4 @@
-package sort;
+package thry_sort;
 
 public class HeapSort {
 	public static void main(String[] args) {

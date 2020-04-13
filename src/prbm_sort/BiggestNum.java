@@ -1,4 +1,4 @@
-package sort_problem;
+package prbm_sort;
 
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package sort;
+package thry_sort;
 
 public class HeapSort2 {
     private static int[] data;
@@ -6,7 +6,7 @@ public class HeapSort2 {
     
     public static void heap(int[] data, int number) {
     	for(int i=number-1; i>0; i--) {
-//    	for(int i=1; i<number; i++) { ê¸°ì¡´ ì½”ë“œì—ì„œ ì´ìƒí–ˆë˜ ë¶€ë¶„(ì—°ì‚°ë‚­ë¹„)
+//    	for(int i=1; i<number; i++) { ê¸°ì¡´ ì½”ë“œ?—?„œ ?´?ƒ?–ˆ?˜ ë¶?ë¶?(?—°?‚°?‚­ë¹?)
             int child = i;
             while(child > 0) {
                 int parent = (child-1)/2;
@@ -25,7 +25,7 @@ public class HeapSort2 {
 	        data[i] = (int)(Math.random() * 100);
 	    }
 	    
-	    System.out.print("ì •ë ¬ ì „ : ");
+	    System.out.print("? •? ¬ ? „ : ");
 	    for(int i=0; i< number; i++) {
 	        System.out.print(data[i]+ " ");
 	    }
@@ -36,7 +36,7 @@ public class HeapSort2 {
 	        data[0] = data[i];
 	        data[i] = temp;
 	        
-//		    System.out.print("\nì •ë ¬ ì¤‘ : ");
+//		    System.out.print("\n? •? ¬ ì¤? : ");
 //		    for(int j=0; j< number; j++) {
 //		        System.out.print(data[j]+ " ");
 //		    }
@@ -44,7 +44,7 @@ public class HeapSort2 {
 	        heap(data, i);
 	    }
 	    
-	    System.out.print("\nì •ë ¬ í›„ : ");
+	    System.out.print("\n? •? ¬ ?›„ : ");
 	    for(int i=0; i< number; i++) {
 	        System.out.print(data[i]+ " ");
 	    }

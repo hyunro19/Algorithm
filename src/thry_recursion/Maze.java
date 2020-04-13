@@ -1,4 +1,4 @@
-package recursion;
+package thry_recursion;
 
 public class Maze {
 	private static int N=8;

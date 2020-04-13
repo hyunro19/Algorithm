@@ -1,4 +1,4 @@
-package sort_problem;
+package prbm_sort;
 
 import java.util.Arrays;
 
@@ -13,10 +13,10 @@ public class Hindex {
     public static int solution(int[] citations) {
     	if(citations.length==0) return 0;
         Arrays.parallelSort(citations);
-        for(int i=citations.length-1; i>=0; i--) {
-        	System.out.print(citations[i]+" ");
-        }
-        System.out.println("");
+//        for(int i=citations.length-1; i>=0; i--) {
+//        	System.out.print(citations[i]+" ");
+//        }
+//        System.out.println("");
         int cnt=0;
         for(int i=citations.length-1, n=1; i>=0; i--, n++) {
         	if(citations[i]>=n) cnt++;

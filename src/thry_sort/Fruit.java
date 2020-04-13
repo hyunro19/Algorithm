@@ -1,4 +1,4 @@
-package sort;
+package thry_sort;
 
 import java.util.Arrays;
 

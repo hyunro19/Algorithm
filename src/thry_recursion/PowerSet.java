@@ -1,4 +1,4 @@
-package recursion;
+package thry_recursion;
 
 public class PowerSet {
 	private static char data[] = {'a', 'b', 'c', 'd', 'e', 'f'};
