@@ -18,28 +18,18 @@ public class WordConversion {
         int stringLength = begin.length();
         int arrayLength = words.length;
         boolean[] isUsed = new boolean[words.length];
+        
         int answer = convert(begin, target, words, isUsed, 0, stringLength, arrayLength);
         
-        // loop를 돌면서 char가 하나만 다르면 일단 걔로 바꾸고
-        // method boolean isConversible(String bf, String af, int length); 1글자만 차이나면 O 아니면 X
-        // method boolean isTarget(String rst, String tgt, int length); return cnt;
-        // boolean[] isUsed = boolean[woords.length]; 이미 사용됐으면 loop에서 pass;
-        // 변환불가하면 return 51로 하고
-        // 
         if(answer<=arrayLength) return answer;
         else return 0;
     }
     
     public static int convert(String before, String target, String[] words, boolean[] isUsed, int depth, int stringLength, int arrayLength) {
-    	System.out.println("before : "+before+", target : "+target+", depth : "+depth);
-		if(isTarget(before, target, stringLength)) {
-			System.out.println("isTarget : "+before+" "+target);
-			return depth;
-		}
-    	if(depth>words.length) {
-			System.out.println("depth==length : "+before+" "+target);
-    		return words.length;
-    	}
+		if(isTarget(before, target, stringLength)) return depth;
+    	
+		if(depth>words.length) return words.length;
+    	
     	int min=arrayLength+1;
     	for(int i=0; i<words.length; i++) {
     		if(isUsed[i]==false && isConversible(before, words[i], stringLength)) {
