@@ -1,4 +1,4 @@
-package codingTest;
+package Line;
 
 public class Line5 {
 
