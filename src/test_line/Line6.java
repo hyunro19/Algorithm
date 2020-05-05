@@ -1,4 +1,4 @@
-package Line;
+package test_line;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +12,8 @@ public class Line6 {
         answer = temp;
         for(int i=0; i<2; i++)
         	System.out.println(answer[i]);
+        
+               
 	}
 
 }

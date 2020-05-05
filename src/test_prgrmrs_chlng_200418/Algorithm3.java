@@ -1,4 +1,4 @@
-package prgrmrs_chlng_200418;
+package test_prgrmrs_chlng_200418;
 
 import java.util.Arrays;
 
@@ -8,9 +8,9 @@ public class Algorithm3 {
 	static boolean possible;
 	
 	public static void main(String[] args) {
-//		int[] numbers = {10, 20, 15, 35};
-		int[] numbers = {3, 7, 2, 8, 6, 4, 5, 1};
-		int K = 3;
+		int[] numbers = {15, 19, 6, 23, 7, 13, 10};
+//		int[] numbers = {3, 7, 2, 8, 6, 4, 5, 1};
+		int K = 5;
 		
 		System.out.println(solution(numbers, K));
 	}
@@ -39,13 +39,19 @@ public class Algorithm3 {
     }
     
     public static void dfs(int depth, int cnt) {
-    	if(depth==cnt)    		
-    		if(getMaxDiff(num)<=diff) possible=true;    		
+    	if(depth==cnt) {
+    		if(getMaxDiff(num)<=diff)
+    			possible=true;    		
+    		return;
+    	}
     			    	
     	for(int i=0; i<num.length-1; i++) {
     		for(int j=i+1; j<num.length; j++) {
+    			System.out.println(i+", "+j+", depth:"+depth);
     			swap(i, j);
-    			if(swappable(i, j)) dfs(depth+1, cnt);
+    			// 아래 swappable이 없어야 한다.
+    			// if(swappable(i, j))
+    				dfs(depth+1, cnt);
     			swap(i, j);    			
     		}
     	}

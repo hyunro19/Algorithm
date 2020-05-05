@@ -1,4 +1,4 @@
-package prgrmrs_chlng_200418;
+package test_prgrmrs_chlng_200418;
 
 public class Algorithm2 {
 	static int[][] status = { {-1, 0}, //ºÏ 0

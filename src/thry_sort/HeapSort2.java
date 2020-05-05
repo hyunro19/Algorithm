@@ -6,7 +6,7 @@ public class HeapSort2 {
     
     public static void heap(int[] data, int number) {
     	for(int i=number-1; i>0; i--) {
-//    	for(int i=1; i<number; i++) { ê¸°ì¡´ ì½”ë“œ?—?„œ ?´?ƒ?–ˆ?˜ ë¶?ë¶?(?—°?‚°?‚­ë¹?)
+//    	for(int i=1; i<number; i++) { ê¸°ì¡´ ì½”ë“œì—ì„œ ì´ìƒí–ˆë˜ ë¶€ë¶„(ì—°ì‚°ë‚­ë¹„)
             int child = i;
             while(child > 0) {
                 int parent = (child-1)/2;
@@ -22,10 +22,10 @@ public class HeapSort2 {
     public static void main(String[] args) {
 	    data = new int[number];
 	    for(int i=0; i< number; i++) {
-	        data[i] = (int)(Math.random() * 100);
+	        data[i] = (int)(Math.random() * 100); 
 	    }
 	    
-	    System.out.print("? •? ¬ ? „ : ");
+	    System.out.print("Before Sort : ");
 	    for(int i=0; i< number; i++) {
 	        System.out.print(data[i]+ " ");
 	    }
@@ -36,7 +36,7 @@ public class HeapSort2 {
 	        data[0] = data[i];
 	        data[i] = temp;
 	        
-//		    System.out.print("\n? •? ¬ ì¤? : ");
+//		    System.out.print("\nWhile Sorting ("+i+") : ");
 //		    for(int j=0; j< number; j++) {
 //		        System.out.print(data[j]+ " ");
 //		    }
@@ -44,7 +44,7 @@ public class HeapSort2 {
 	        heap(data, i);
 	    }
 	    
-	    System.out.print("\n? •? ¬ ?›„ : ");
+	    System.out.print("\nAfter Sort : ");
 	    for(int i=0; i< number; i++) {
 	        System.out.print(data[i]+ " ");
 	    }
