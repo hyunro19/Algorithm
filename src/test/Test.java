@@ -13,12 +13,12 @@ public class Test {
 		recursion();
 	}
 	public static void main(String[] args) {
-		Set set = new HashSet();
-		Map<Integer, ArrayList<Integer>> map = new HashMap();
-//		map.getOrDefault(key, defaultValue);
-		ArrayList<Integer> arr = new ArrayList<>();
-		System.out.println(map.get(3)==null);
-		
+		String str = "???String";
+		String[] strarr = new String[3];
+		System.out.println(str.substring(str.lastIndexOf("?")+1));
+		System.out.println(str.endsWith(""));
+		System.out.println(str.startsWith(""));
+		str.length();
 
 //		for(int i=0; i<len; i++) {
 //			System.out.println("½ÇÇà");
