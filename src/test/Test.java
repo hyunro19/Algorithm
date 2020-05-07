@@ -1,5 +1,11 @@
 package test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 public class Test {
 	static int len = 5;
 	
@@ -7,7 +13,12 @@ public class Test {
 		recursion();
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Set set = new HashSet();
+		Map<Integer, ArrayList<Integer>> map = new HashMap();
+//		map.getOrDefault(key, defaultValue);
+		ArrayList<Integer> arr = new ArrayList<>();
+		System.out.println(map.get(3)==null);
+		
 
 //		for(int i=0; i<len; i++) {
 //			System.out.println("½ÇÇà");
