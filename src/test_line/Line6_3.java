@@ -35,62 +35,35 @@ public class Line6_3 {
 		
 		
         String[] answer = solution(directory, command);
-        for(int i=0; i<answer.length; i++)
-        	System.out.println(answer[i]);               
+//        for(int i=0; i<answer.length; i++)
+//        	System.out.println(answer[i]);               
 	}
-	
+	static Node root;
     public static String[] solution(String[] directory, String[] command) {
     	List<String> arr = new ArrayList<>();
-    	for(String s : directory) arr.add(s);
-    	
-    	Node root = new Node("/");
-    	Node current = root;
-    	for(String dir : directory) {
-    		String[] folders = dir.split("/");
-    		for(String folder : folders) {
-    			if(!current.submap.keySet().contains(folder)) // 없으면 추가 
-    				current.submap.put(folder, new Node(folder));
+//    	for(String s : directory) arr.add(s);
 
-    			current = current.submap.get(folder); // 있으면 뱉기
-    		}
+    	// root노드 생성
+    	root = new Node("/");
+    	for(String str : directory) {
+    		root.mkdir(str);
     	}
-    	// 여기까지 Trie로 만들기
     	
     	for(String com :command) {
     		String[] tempCom = com.split(" ");
     		if(tempCom[0].equals("mkdir")) {
-    			String[] tempDir = tempCom[1].split("/");
-    			current = root;
-    			for(String folder : tempDir) {
-    				Node tempNode = current.submap.get(folder);
-    				if(tempNode != null) current = tempNode;
-    				else current.submap.put(folder, tempNode);
-    			}
-    			
+    			root.mkdir(tempCom[1]);
     		} else if(tempCom[0].equals("rm")) {
-    			String[] tempDir = tempCom[1].split("/");
-    			for(int i=0; i<tempDir.length; i++) {
-    				if(i==tempDir.length-1) {
-    					current.submap.remove(tempDir[i]);
-    					break;
-    				} else {
-        				Node tempNode = current.submap.get(tempDir[i]);
-        				if(tempNode != null) current = tempNode;
-        				else current.submap.put(tempDir[i], tempNode);    					
-    				}
-    			}
-    			
-    			
+    			root.rm(tempCom[1]);
     		} else if(tempCom[0].equals("cp")) {
-    			// 후...
-    			// 트라이로 푸는 문제가 아닌 것 같은데???
-    			
-    			
-    			
+    			root.cp(tempCom[1], tempCom[2]);
     		}
-    
-    		
-    		
+    	}	
+    	
+
+    	root.print(root);
+    	
+    	
         String[] answer = arr.toArray(new String[0]);
         Arrays.sort(answer);
         return answer;
@@ -99,12 +72,104 @@ public class Line6_3 {
 
 class Node{
 	String dir;
-	ArrayList<Node> subs;
-	Map<String, Node> submap;
+	Map<String, Node> subs;
 	
 	public Node(String dir) {
 		this.dir = dir;
-		this.submap = new HashMap<>();
+		this.subs = new HashMap<>();
+	}
+	
+	public void mkdir(String cmd) {
+		if(cmd.equals("/")) return;
+		String[] route = cmd.split("/");
+		Node current = this;
+		for(String folder : route) {
+			if(folder.equals("")) continue;
+			Node tempNode = current.subs.get(folder);
+			
+			if(tempNode==null) {
+//				System.out.println("tempNode == null, current : "+current.dir+", mkdir : "+folder);
+				Node newNode = new Node(folder);
+				current.subs.put(folder, newNode);
+				tempNode = newNode;
+			}
+			
+			current = tempNode;
+		}		
+	}
+	
+	public void rm(String cmd) {
+		String[] route = cmd.split("/");
+		Node current = this;
+		int i=1; // 아래아랫줄에 if(folder.equals("")) continue; 때문에 1로 시작 
+		for(String folder : route) {
+			if(folder.equals("")) continue;
+			
+			if(i==route.length-1) {
+				current.subs.remove(folder);
+			}
+			else {
+				Node temp = current.subs.get(folder);
+				current = temp;
+			}
+			i++;
+		}
 		
 	}
+	
+	public void cp(String cmdS, String cmdD) {
+		String[] routeS = cmdS.split("/");
+		String[] routeD = cmdD.split("/");
+		
+		Node source = this;
+		int i=1;
+		for(String folder : routeS) {
+			if(folder.equals("")) continue;
+			
+			if(i==routeS.length-1) {
+				return;
+				
+			} else {
+				Node temp = source.subs.get(folder);
+				source = temp;
+			}
+//			i++; 이게 없어야 답이 맞네... 왜지?
+		}
+		
+		Node destination = this;
+		int j=1;
+		for(String folder : routeD) {
+			if(folder.equals("")) continue;
+			
+			if(j==routeD.length-1) {
+				return;
+			} else {
+				Node temp = destination.subs.get(folder);
+				destination = temp;
+			}
+//			j++; 이게 없어야 답이 맞네... 왜지?
+		}
+		copy(source, destination);
+
+	}
+	
+	public void copy(Node s, Node d) {
+//		System.out.println(s.dir+", "+d.dir);
+		d.subs.put(s.dir, new Node(s.dir));
+		for(Node n : s.subs.values()) {
+			copy(n, d.subs.get(s.dir));
+		}
+	}
+	
+	public void print(Node node) {
+		System.out.println(Arrays.deepToString(al.toArray()));
+		
+		for(Node child : node.subs.values()) {
+			al.add(child.dir);
+			print(child);
+			al.remove(child.dir);
+		}
+	}
+	
+	public static ArrayList<String> al = new ArrayList<>(); 
 }

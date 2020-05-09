@@ -13,12 +13,22 @@ public class Test {
 		recursion();
 	}
 	public static void main(String[] args) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("123000");
+		System.out.println(sb.charAt(1));
+		System.out.println(Integer.parseInt("03")<Integer.parseInt("30"));
+		
 		String str = "???String";
 		String[] strarr = new String[3];
 		System.out.println(str.substring(str.lastIndexOf("?")+1));
 		System.out.println(str.endsWith(""));
 		System.out.println(str.startsWith(""));
 		str.length();
+		
+		Map<String, int[]> map = new HashMap<>();
+		for(int[] value : map.values()) {
+			
+		}
 
 //		for(int i=0; i<len; i++) {
 //			System.out.println("½ÇÇà");

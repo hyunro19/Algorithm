@@ -28,7 +28,7 @@ public class WordConversion {
     public static int convert(String before, String target, String[] words, boolean[] isUsed, int depth, int stringLength, int arrayLength) {
 		if(isTarget(before, target, stringLength)) return depth;
     	
-		if(depth>words.length) return words.length;
+//		if(depth>words.length) return words.length; 이 부분 없어도 된다. 해당되지 않으면 아래 min=arrayLength+1;을 리턴해버리므로.
     	
     	int min=arrayLength+1;
     	for(int i=0; i<words.length; i++) {
@@ -52,10 +52,9 @@ public class WordConversion {
     }
     
     public static boolean isTarget(String rst, String tgt, int length) {
-    	int j = 0;
     	for(int i=0; i<length; i++) {
     		if(rst.charAt(i)!=tgt.charAt(i))
-    			if(++j>0) return false;
+    			return false;
     	}
     	return true;
     }
