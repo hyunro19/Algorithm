@@ -44,10 +44,10 @@ class Solution3 {
     }
     
     	public int search(Node node, boolean[] isVisited) {
-		// 이미 방문한 노드일 때
+		// if this node is already visited
 		if(isVisited[node.index]==true) return node.points;
 		
-		// 리프 노드일 때
+		// if this is a leaf node
 		ArrayList<Node> subSkills = node.subSkills;
 		if(subSkills.size()==0) {
 			isVisited[node.index] = true;
@@ -55,7 +55,7 @@ class Solution3 {
 			return 1;			
 		}
 		
-		// 방문 안한 중간 노드일 때
+		// if not visited yet and not a leaf node
 		int points = 0;
 		for(int j=0; j<subSkills.size(); j++) {
 			points += search(subSkills.get(j), isVisited); 
