@@ -3,6 +3,7 @@ test_coupang/
 
 ### 자잘한 테스트 코드들 ###
 test/
+test*.*
 
 
 # Created by https://www.gitignore.io/api/java,eclipse
