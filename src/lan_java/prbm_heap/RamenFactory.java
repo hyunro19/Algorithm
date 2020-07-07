@@ -18,21 +18,21 @@ public class RamenFactory {
 	// �� heap�̳� �ٵ�..?
 	
 
-	public static int solution(int stock, int[] dates, int[] supplies, int k) {
+    public int solution(int stock, int[] dates, int[] supplies, int k) {
 		int len = dates.length;
 		PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
 		int cnt=0;
         
-        // dates�� ������ index�� �ش��ϴ� ��¥���� �������� �ʰ� ó��
-		for(int i=0; i<len; i++) {
+        // dates의 마지막 index에 해당하는 날짜까지 부족하지 않게 처리
+		for(int i=0; i<len; i++) {            
 			if(stock < dates[i]) {
-				stock += pq.poll();		
+				stock += pq.poll();
 				++cnt;
 			}
-			pq.add(supplies[i]); // if�� �տ� this line�� ����  ����, dates���� �ߺ��� ���� ��� ����?
+			pq.add(supplies[i]);
 		}
 		
-        // ������ index���Ŀ� �����ϴٸ�, �߰��� �� poll
+        // 마지막 index이후에 부족하다면, 추가로 더 poll
 		while(stock<k) {
 			stock+=pq.poll();
 			++cnt;
