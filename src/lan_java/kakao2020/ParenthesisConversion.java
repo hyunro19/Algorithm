@@ -18,7 +18,7 @@ public class ParenthesisConversion {
         for(int i=2; i<=p.length(); i+=2) {
             u = p.substring(0, i);
             if(isBalanced(u)) {
-                if(i==p.length()) break;
+                // if(i==p.length()) break;
                 v = p.substring(i);
                 break;
             }
@@ -37,6 +37,7 @@ public class ParenthesisConversion {
     public boolean isBalanced(String p) {
         int open = 0;
         int close = 0;
+        
         for(int i=0; i<p.length(); i++) {
             if(p.charAt(i)=='(') {
                 ++open;
@@ -44,8 +45,12 @@ public class ParenthesisConversion {
                 ++close;
             }
         }
-        if(open==close) return true;
-        else return false;        
+        
+        if(open==close) {
+        	return true;
+        } else {
+        	return false;        
+        }
     }
     
     public boolean isCorrect(String p) {
@@ -54,29 +59,35 @@ public class ParenthesisConversion {
         for(int i=0; i<p.length(); i++) {
             char c = p.charAt(i);
             
-            if(p.charAt(i)=='(') {
+            if(c=='(') {
                 stack.push(c);
-                continue;
-            } else if(p.charAt(i)==')') {                
+            } else if(c==')') {                
                 if(stack.size()==0) {
                     return false;
-                } else if (stack.peek()=='(') {                    
+                }
+                
+                if (stack.peek()=='(') { // && c==')'                    
                     stack.pop();
-                    continue;
-                } else { // p.charAt(i)==')' && stack.peek()!='('
+                } else { // c==')' && stack.peek()!='(' // pop했기 때문에 '('여야만 함  '))'가 연속으로 스택에 들어갈 수 없음
                     return false;
                 }
             }
         }
         return true;        
     }
+    
     public String reverse(String p) {
         StringBuilder sb = new StringBuilder();
+        
         for(int i=1; i<p.length()-1; i++) {
             char c = p.charAt(i);            
-            if(c=='(') sb.append(')');
-            else sb.append('(');            
+            if(c=='(') {
+            	sb.append(')');
+            } else {
+            	sb.append('(');            
+            }
         }
+        
         return sb.toString();
         
     }
