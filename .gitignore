@@ -1,7 +1,8 @@
 ### 유출금지 기출 ###
-test_coupang/
+test.coupang/
 
 ### 자잘한 테스트 코드들 ###
+test*/
 test/
 test*.*
 
