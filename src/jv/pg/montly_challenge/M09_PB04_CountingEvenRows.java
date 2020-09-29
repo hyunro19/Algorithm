@@ -1,6 +1,7 @@
 package jv.pg.montly_challenge;
 
-public class M09_PB04 {
+// 시간초과로 실패 ㅠㅠ
+public class M09_PB04_CountingEvenRows {
 
 	public static void main(String[] args) {
 		int[][] a = {{0,1,0},{1,1,1},{1,1,0},{0,1,1}};
@@ -25,8 +26,9 @@ public class M09_PB04 {
         // 2 4 2 // 2 0 0 // 2 1 0 1 2       
         
         int[][] b = new int[rows][cols];
-        
-        return dfs(b, numOfOneOfA, rows, cols, 0, 0);
+        int ans = dfs(b, numOfOneOfA, rows, cols, 0, 0);
+        ans = ans%10000019;
+        return ans;
     }
 
 
@@ -35,40 +37,41 @@ public class M09_PB04 {
         // 그렇지 않으면 0이 될 수도 1이될 수도 있다.
         // c를 다 채우고 c행의 1의 숫자가 짝수가 아니면 promising하지 않으므로 return 0;
 
-    //존나복잡하네.. 푼 내가 대견하다
+    // 너무 복잡하다.. 2차원 dfs
     public static int dfs(int[][] b, int[] numOfOneOfA, int rows, int cols, int cidx, int ridx) {
-    	// int[] copy = Arrays.copyOf(numOfOneOfA, numOfOneOfA.length);
-    	if(ridx>=rows) {
-    		return 1;
-    	}
-        // 이하 ridx < rows
-    	int cnt = 0;
-    	
-    	if(cidx>=cols) {
+    	if(ridx==rows) return 1;
+        
+        // 이하 ridx < rows    	    	
+    	if(cidx==cols) {
     		if(hasEvenOnes(b[ridx])) {
-    			cnt += dfs(b, numOfOneOfA, rows, cols, 0, ridx+1);
+    		    return dfs(b, numOfOneOfA, rows, cols, 0, ridx+1);
     		} else {
     			return 0;
     		}
     	} else { // 이하 cidx < cols
-            if(numOfOneOfA[cidx]>=rows-ridx) { // 남은 row numOfOne가 모두 1이 되야 하는 경우
+            if(numOfOneOfA[cidx]==rows-ridx) { // 남은 row numOfOne가 모두 1이 되야 하는 경우
                 b[ridx][cidx]=1;
                 numOfOneOfA[cidx]-=1;
-                cnt+=dfs(b, numOfOneOfA, rows, cols, cidx+1, ridx);
+                int cnt = dfs(b, numOfOneOfA, rows, cols, cidx+1, ridx);
                 b[ridx][cidx]=0;     
                 numOfOneOfA[cidx]+=1;
+                return cnt%10000019;
             } else if(numOfOneOfA[cidx]==0) { // 0이어야만 하는 경우
-                cnt+=dfs(b, numOfOneOfA, rows, cols, cidx+1, ridx);                    
+                int cnt =dfs(b, numOfOneOfA, rows, cols, cidx+1, ridx);                    
+                return cnt%10000019;
             } else { // 0이어도, 1이어도 되는 경우
+                int cnt = 0;
                 cnt+=dfs(b, numOfOneOfA, rows, cols, cidx+1, ridx); // 0일 때
                 b[ridx][cidx]=1;
                 numOfOneOfA[cidx]-=1;
                 cnt+=dfs(b, numOfOneOfA, rows, cols, cidx+1, ridx); // 1일 때
                 b[ridx][cidx]=0;     
                 numOfOneOfA[cidx]+=1;
+                return cnt%10000019;
             }	   
-        } 	    	    
-    	return cnt;
+        }
+    	// cnt= cnt%10000019;
+    	// return cnt;
     }
     
     public static boolean hasEvenOnes(int[] row) {
